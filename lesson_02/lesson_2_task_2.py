@@ -6,4 +6,4 @@ def is_year_leap(n):
 
 
 n = int(input("Номер года "))
-is_year_leap(2024)
+is_year_leap(n)
