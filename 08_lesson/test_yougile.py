@@ -7,7 +7,8 @@ key = 'bSa1TYBkDv5ygL-nn+zt8yEIvaAmY+TZ7f5jaaV93VD2775Qwrr8tJpqlwxGNPMW'
 
 headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer bSa1TYBkDv5ygL-nn+zt8yEIvaAmY+TZ7f5jaaV93VD2775Qwrr8tJpqlwxGNPMW"
+    "Authorization":
+    "Bearer bSa1TYBkDv5ygL-nn+zt8yEIvaAmY+TZ7f5jaaV93VD2775Qwrr8tJpqlwxGNPMW"
     }
 
 
@@ -40,7 +41,8 @@ def test_edit_project():
         "title": "Новая доска"
         }
 
-    requests.put(base_url + '/projects/' + project_id, headers=headers, json=body_req)
+    requests.put(base_url + '/projects/' + project_id, headers=headers,
+                 json=body_req)
     res_3 = requests.get(base_url + '/projects/' + project_id, headers=headers)
 
     assert res_3.json()['title'] == "Новая доска"
@@ -107,7 +109,8 @@ def test_edit_project_fail():
         "title": "Новая доска"
         }
 
-    requests.put(base_url + '/projects/' + project_id, headers=headers, json=body_req)
+    requests.put(base_url + '/projects/' + project_id, headers=headers,
+                 json=body_req)
     res_3 = requests.get(base_url + '/projects/' + project_id, headers=headers)
 
     assert res_3.status_code == 404
