@@ -78,19 +78,11 @@ def test_create_project_fail():
 
 
 @pytest.mark.negative
+@pytest.mark.negative
 def test_get_project_fail():
-    body = {
-        "title": "Новый проектище",
-        "users": {
-            "43958489-89f9-41c4-af40-856a02f3057c": "admin"
-        }
-    }
-    res = requests.post(base_url + '/projects/', headers=headers, json=body)
-    project_id = res.json()['id']
-
-    res_3 = requests.put(base_url + '/projects/' + project_id, headers=headers)
-
-    assert res_3.status_code == 404
+    fake_id = "not-existed-project-id"
+    res = requests.get(base_url + '/projects/' + fake_id, headers=headers)
+    assert res.status_code == 404
 
 
 @pytest.mark.negative
@@ -102,15 +94,4 @@ def test_edit_project_fail():
         }
     }
     res = requests.post(base_url + '/projects', headers=headers, json=body)
-    project_id = res.json()['id']
-
-    body_req = {
-        "deleted": False,
-        "title": "Новая доска"
-        }
-
-    requests.put(base_url + '/projects/' + project_id, headers=headers,
-                 json=body_req)
-    res_3 = requests.get(base_url + '/projects/' + project_id, headers=headers)
-
-    assert res_3.status_code == 404
+    assert res.status_code == 400
